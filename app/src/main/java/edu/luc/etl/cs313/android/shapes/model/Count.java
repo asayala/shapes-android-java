@@ -50,14 +50,14 @@ public class Count implements Visitor<Integer> {
 
     @Override
     public Integer onLocation(final Location l) {
-        //  places an existing shape.
+        // places an existing shape.
         // Delegate the counting to the contained shape.
         return l.getShape().accept(this);
     }
 
     @Override
     public Integer onStrokeColor(final StrokeColor c) {
-        //  modifies an existing shape...
+        // modifies an existing shape...
         // Delegate the counting to the contained shape.
         return c.getShape().accept(this);
     }
