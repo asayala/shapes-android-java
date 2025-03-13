@@ -10,41 +10,71 @@ public class Count implements Visitor<Integer> {
 
     @Override
     public Integer onPolygon(final Polygon p) {
-        return -1;
+        /**
+         * A polygon is a basic shape, so return 1.
+         */
+        return 1;
     }
 
     @Override
     public Integer onCircle(final Circle c) {
-        return -1;
+        /**
+         * A circle is a basic shape, so return 1.
+         */
+        return 1;
     }
 
     @Override
     public Integer onGroup(final Group g) {
-        return -1;
+        /**
+         * A group consists of multiple shapes. We recursively count all shapes inside it.
+         */
+        int count = 0;
+        for (Shape s : g.getShapes()) {
+            count += s.accept(this); // Recursively count shapes in the group
+        }
+        return count;
     }
 
     @Override
     public Integer onRectangle(final Rectangle q) {
-        return -1;
+        /**
+         * A rectangle is a basic shape, so return 1.
+         */
+        return 1;
     }
 
     @Override
     public Integer onOutline(final Outline o) {
-        return -1;
+        /**
+         * An outlined shape still contains the same shape, so delegate the counting to it.
+         */
+        return o.getShape().accept(this);
     }
 
     @Override
     public Integer onFill(final Fill c) {
-        return -1;
+        /**
+         * A filled shape still contains the same shape, so delegate the counting to it.
+         */
+        return c.getShape().accept(this);
     }
 
     @Override
     public Integer onLocation(final Location l) {
-        return -1;
+        /**
+         * A located shape does not add a new shape; it simply places an existing shape.
+         * Delegate the counting to the contained shape.
+         */
+        return l.getShape().accept(this);
     }
 
     @Override
     public Integer onStrokeColor(final StrokeColor c) {
-        return -1;
+        /**
+         * A stroke color does not add a new shape; it just modifies an existing shape.
+         * Delegate the counting to the contained shape.
+         */
+        return c.getShape().accept(this);
     }
 }
