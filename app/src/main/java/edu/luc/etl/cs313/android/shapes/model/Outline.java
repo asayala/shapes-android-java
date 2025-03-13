@@ -19,6 +19,10 @@ public class Outline implements Shape {
     @Override
     public <Result> Result accept(final Visitor<Result> v) {
         // TODO your job
-        return null;
+        /**
+         * Accept method for the visitor pattern.
+         * Calls the appropriate visitor method for an outlined shape.
+         */
+        return v.onOutline(this);
     }
 }

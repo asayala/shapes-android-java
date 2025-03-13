@@ -20,6 +20,10 @@ public class Polygon extends Group {
     @Override
     public <Result> Result accept(final Visitor<Result> v) {
         // TODO your job
-        return null;
+        /**
+         * Accept method for the visitor pattern.
+         * Calls the appropriate visitor method for a polygon.
+         */
+        return v.onPolygon(this);
     }
 }
