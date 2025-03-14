@@ -20,25 +20,24 @@ public class DrawWidget extends View {
         this(context);
     }
 
-    public DrawWidget(final Context context) { super(context); }
+    public DrawWidget(final Context context) {
+        super(context);
+    }
 
     @Override
     protected void onMeasure(final int widthMeasureSpec, final int heightMeasureSpec) {
         setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
     }
-    
-    // TODO once BoundingBox and Draw are implemented, change Fixtures.simpleCircle
-    // to Fixtures.complexGroup and test the app on an emulator or Android device
-    // to make sure the correct figure is drawn (see Project 3 description for link)
 
     @Override
     @SuppressLint("DrawAllocation")
     protected void onDraw(final Canvas canvas) {
-        final var shape = Fixtures.simpleCircle;
+        // TODO has been implemented: changed simpleCircle to complexGroup
+        final var shape = Fixtures.complexGroup; // Updated from simpleCircle to complexGroup
         final var b = shape.accept(new BoundingBox());
         canvas.translate(-b.getX(), -b.getY());
-        b.accept(new Draw(canvas, paint));
-        shape.accept(new Draw(canvas, paint));
+        b.accept(new Draw(canvas, paint)); // Draw bounding box
+        shape.accept(new Draw(canvas, paint)); // Draw actual shape
         canvas.translate(b.getX(), b.getY());
     }
 }
