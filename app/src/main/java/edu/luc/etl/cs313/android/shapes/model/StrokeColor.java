@@ -39,7 +39,7 @@ public class StrokeColor implements Shape {
     public <Result> Result accept(Visitor<Result> v) {
         /**
          * Accept method for the visitor pattern.
-         * Calls the appropriate visitor method for a stroke-colored shape.
+         *  Calls the appropriate visitor method for a stroke-colored shape.
          */
         return v.onStrokeColor(this);
     }

@@ -22,7 +22,7 @@ public class Polygon extends Group {
         // TODO your job
         /**
          * Accept method for the visitor pattern.
-         * Calls the appropriate visitor method for a polygon.
+         *  Calls the appropriate visitor method for a polygon.
          */
         return v.onPolygon(this);
     }
